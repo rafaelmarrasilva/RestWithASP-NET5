@@ -41,15 +41,24 @@ namespace RestWithASPNET.Controllers
             return BadRequest("Invalid Input");
         }
 
-        [HttpGet("multiplication/{}/{}")]
-
-        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
         public IActionResult GetMultiplication(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 var multiplication = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
                 return Ok(multiplication.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult GetDivision(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var division = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(division.ToString());
             }
             return BadRequest("Invalid Input");
         }
